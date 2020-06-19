@@ -18,7 +18,7 @@ class TweetController extends Controller
      */
     public function index()
     {
-        $tweets = tweet::latest()->get();
+        $tweets = tweet::withLikes()->latest()->get();
       
         return view('tweet')->with('tweets', $tweets);
     }
@@ -45,6 +45,7 @@ class TweetController extends Controller
         
         return back();
     }
+
 
     
 }

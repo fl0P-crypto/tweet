@@ -28,5 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::POST('explore', 'UserController@search')->name('searchUsers');
     Route::get('/user/{user}', 'UserController@show')->name('userProfile');
     Route::post('/user/{user}', 'followController')->name('followUser');
-   
+    route::post('tweet/{tweet}/like', 'Likecontroller@like')->name('like');
+    route::post('tweet/{tweet}/dislike', 'Likecontroller@dislike')->name('dislike');
     });

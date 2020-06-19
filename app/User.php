@@ -44,4 +44,8 @@ class User extends Authenticatable
     {
         return tweet::where('user_id', $this->id)->latest()->get();
     }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

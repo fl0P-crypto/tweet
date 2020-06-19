@@ -19,9 +19,28 @@
                             {{$tweet->body}}
                         </p>
                     </div>
-                    <div class="mt-2">
-                        <button class="px-4 py-2 border rounded-lg border-indigo-200 hover:bg-indigo-800 hover:text-white">Like</button>
+                    <div class="mt-2 flex items-center justify-start">
+                        <form class="mr-2" action="{{route('like', $tweet->id)}}" method="post">
+                            @csrf
+                            
+                            <button class="flex itemsn-center justify-between px-4 py-2 border rounded-lg border-indigo-200 hover:bg-indigo-800 hover:text-white {{$tweet->isLikedBy(auth()->user()) ? 'bg-blue-400' : ''}}">
+                                {{$tweet->isLikedBy(auth()->user()) ? 'Liked' : 'Like'}}
+                             
+                                <p>({{$tweet->likes ?: 0 }})</p>
+                            </button>
+                        </form>
+                        <form class="mr-2" action="{{route('dislike', $tweet->id)}}" method="post">
+                            @csrf
+                            
+                            <button class="flex itemsn-center justify-between px-4 py-2 border rounded-lg border-indigo-200 hover:bg-indigo-800 hover:text-white {{$tweet->isDislikedBy(auth()->user()) ? 'bg-blue-400': ''}} ">
+                                {{$tweet->isDislikedBy(auth()->user()) ? 'Disliked' : 'Dislike'}}
+                             
+                                <p>({{$tweet->dislikes ?: 0 }})</p>
+                            </button>
+
+                        </form>
                         <button class="px-4 py-2 border rounded-lg border-indigo-200 hover:bg-indigo-800 hover:text-white">Comment</button>
+                        
                     </div>
                     
         
