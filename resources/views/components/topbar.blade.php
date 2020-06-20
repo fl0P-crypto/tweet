@@ -16,7 +16,7 @@
                     @endguest
                     @auth
                         <user-dropdown logout-route="{{route('logout')}}" 
-                        :name={{json_encode(auth()->user()->name) }}
+                        :name={{json_encode(auth()->user()->name)}}
                         :id={{json_encode(auth()->user()->id)}}
                         :email={{json_encode(auth()->user()->email)}}
                         ></user-dropdown>

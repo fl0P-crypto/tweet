@@ -17,14 +17,16 @@
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none">
     <div id="app" class="container mx-auto px-6 md:px-0">
+        
         <x-topbar ></x-topbar>
         <div class="flex justify-between">
             @auth
                 <x-leftbar></x-leftbar>
             @endauth
             @yield('content')
-            @auth
-                <x-friends></x-friends>
+            @auth 
+         
+                <x-friends ></x-friends>
             @endauth
                 
             

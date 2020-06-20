@@ -1,4 +1,4 @@
-<div class="w-1/6">
+{{-- <div class="w-1/6">
     <div class="items-center">
         <h1 class=" font-bold text-xl mb-4 mx-2">Friends</h1>
         @foreach (auth()->user()->follows as $user)
@@ -9,4 +9,6 @@
         @endforeach
       
     </div>
-</div>
+</div>  --}}
+<user-followers></user-followers>
+

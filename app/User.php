@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Database\Eloquent\Builder;
 class User extends Authenticatable
 {
     use Notifiable, Followable;
@@ -48,4 +48,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+    
 }

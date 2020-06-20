@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/notifications', 'notificationController@index');
+    Route::get('/user/followers', 'AuthUserController@followers')->name('followers');
     Route::get('/tweet', 'tweetController@index')->name('tweet.index');
     Route::post('/tweet', 'tweetController@store')->name('tweet.store');
     Route::get('explore', 'UserController@index')->name('users');
@@ -30,4 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/{user}', 'followController')->name('followUser');
     route::post('tweet/{tweet}/like', 'Likecontroller@like')->name('like');
     route::post('tweet/{tweet}/dislike', 'Likecontroller@dislike')->name('dislike');
+    route::get('tweet/likes', 'TweetController@tweets');
     });
+ 

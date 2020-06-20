@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\tweet;
 use Illuminate\Http\Request;
-use App\User;
 use App\Notifications\tweeted;
 //use Illuminate\Notifications\Notification;
 use Notification;
@@ -19,8 +18,8 @@ class TweetController extends Controller
     public function index()
     {
         $tweets = tweet::withLikes()->latest()->get();
-      
-        return view('tweet')->with('tweets', $tweets);
+    
+        return view('tweet', compact('tweets'));
     }
    
 
@@ -44,6 +43,23 @@ class TweetController extends Controller
         Notification::send($users, new tweeted(auth()->user(),$tweet));
         
         return back();
+    }
+    public function tweets(){
+        $tweets = tweet::withLikes()->with('user')->latest()->get();
+        foreach ($tweets as $tweet) {
+            if ($tweet->isLikedBy(auth()->user())) {
+               $tweet['liked']= true;
+               $tweet['disliked']= false;
+            }elseif($tweet->isDislikedBy(auth()->user())){
+               $tweet['disliked']= true;
+               $tweet['liked']= false;
+            } else {
+               $tweet['liked']=false;
+               $tweet['disliked']=false;
+            }
+            
+        }
+        return response()->json($tweets);
     }
 
 

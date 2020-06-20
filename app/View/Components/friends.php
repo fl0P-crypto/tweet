@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 use App\User;
 class friends extends Component
 {
-    public $user;
+    
     /**
      * Create a new component instance.
      *
@@ -15,7 +15,7 @@ class friends extends Component
      */
     public function __construct()
     {
-        //
+       
     }
 
     /**

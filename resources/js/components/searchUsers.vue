@@ -20,7 +20,7 @@
                     <div class="p-4 mr-2 flex items-center">
                         <img class="rounded-full" :src="'https://i.pravatar.cc/50?u=' + user.email"  alt="">
                         <div class="ml-4">
-                            <a href="/user/" id="name" class="font-bold mr-2">{{user.name}}</a>
+                            <a :href="'/user/'+user.id" id="name" class="font-bold mr-2">{{user.name}}</a>
                             <span class="text-sm">Joined: {{setDate(user.created_at)}} </span>
                         </div>
                                 
@@ -59,10 +59,14 @@
                 axios.post('/user/'+user.id)
                 .then((response)=>{
                     user.following=!user.following
+                 
+                    Event.$emit('newFollow', {user: user})
+                    
                 })
                 .catch((error)=>{
                     console.log(error);
                 })
+                
             },
             searchUser(){
                 const axios = require('axios').default;
